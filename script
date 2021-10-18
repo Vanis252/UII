@@ -709,6 +709,7 @@ function Luxt.CreateWindow(libName, logoId)
                             --
                             infbix = infbix or "TextBox"
                             textPlace = textPlace or "PlaceHolder"
+                            Callback = Callback or function() end
                             --
 
                             local TextBoxFrame = Instance.new("Frame")
@@ -781,7 +782,19 @@ function Luxt.CreateWindow(libName, logoId)
                             UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
                             UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
                             
-                            pcall(Callback, TextBox.Text)
+                            TextBox:GetPropertyChangedSignal("Text"):connect(function()
+                                if string.len(TextBox.Text) >= 14 then
+                                    TextBox.TextScaled = true
+                                else
+                                    TextBox.TextScaled = false
+                                end
+                            end)
+                            
+                            TextBox.FocusLost:Connect(function()
+                                if Callback then
+                                    Callback(TextBox.Text)
+                                end
+                            end)
                         end
 
                             function ItemHandling:Slider(slidInfo, minvalue, maxvalue, callback)
