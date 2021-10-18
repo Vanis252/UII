@@ -705,11 +705,10 @@ function Luxt.CreateWindow(libName, logoId)
                         end)
                     end
 
-                        function ItemHandling:TextBox(infbix, textPlace, callback)
+                        function ItemHandling:TextBox(infbix, textPlace, Callback)
                             --
                             infbix = infbix or "TextBox"
                             textPlace = textPlace or "PlaceHolder"
-                            callback = callback or function() end
                             --
 
                             local TextBoxFrame = Instance.new("Frame")
@@ -781,24 +780,8 @@ function Luxt.CreateWindow(libName, logoId)
                             UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
                             UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
                             UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-
-                            function anim(property)
-                                if property == "Text" then
-                                    textboxFrame:TweenSize(UDim2.new(0, 359,0, 30), "InOut", "Quint", 0.18, true)
-                                    wait(0.18)
-                                    textboxFrame:TweenSize(UDim2.new(0, 365,0, 36), "InOut", "Quint", 0.18, true)
-                                end
-                            end
-                            TextBox.Changed:Connect(anim)
-
-                            TextBox.FocusLost:Connect(function(EnterPressed)
-                                if not EnterPressed then return end
-                                callback(TextBox.Text)
-                                textboxFrame:TweenSize(UDim2.new(0, 359,0, 30), "InOut", "Quint", 0.18, true)
-                                wait(0.18)
-                                textboxFrame:TweenSize(UDim2.new(0, 365,0, 36), "InOut", "Quint", 0.18, true)
-                                TextBox.Text = ""  
-                            end)
+                            
+                            pcall(Callback, TextBox.Text)
                         end
 
                             function ItemHandling:Slider(slidInfo, minvalue, maxvalue, callback)
