@@ -133,7 +133,10 @@ end
 ]]
 
     LuxtLib.Name = "LuxtLib"..libName
-    LuxtLib.Parent = game.CoreGui
+    if identifyexecutor() == "Synapse X" and syn.protect_gui then
+	syn.protect_gui(LuxtLib)
+	LuxtLib.Parent = game:GetService("CoreGui")
+    end
     LuxtLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
     MainFrame.Name = "MainFrame"
