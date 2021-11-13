@@ -132,7 +132,7 @@ end
 
 ]]
 
-    LuxtLib.Name = game:serivce("HttpService"):GenerateGUID(false)
+    LuxtLib.Name = "LuxtLib"..libName
     if identifyexecutor() == "Synapse X" and syn.protect_gui then
 	syn.protect_gui(LuxtLib)
 	LuxtLib.Parent = game:GetService("CoreGui")
