@@ -110,7 +110,8 @@ function Luxt.CreateWindow(libName, logoId)
     logoId = logoId or ""
     --
 
-    LuxtLib.Name = "LuxtLib"..libName
+--[[
+
 if identifyexecutor() == "Synapse X" and syn.protect_gui then
 	syn.protect_gui(LuxtLib)
 	LuxtLib.Parent = game:GetService("CoreGui")
@@ -128,6 +129,11 @@ elseif not (identifyexecutor() == "Synapse X" and syn.protect_gui) or gethui or 
 			Duration = 6
 		})
 end
+
+]]
+
+    LuxtLib.Name = "LuxtLib"..libName
+    LuxtLib.Parent = game.CoreGui
     LuxtLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
     MainFrame.Name = "MainFrame"
