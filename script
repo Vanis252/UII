@@ -142,6 +142,14 @@ elseif hiddenUI then
     LuxtLib.Parent = gethui()
 elseif get_hidden_gui then
     LuxtLib.Parent = get_hidden_gui()
+elseif not (identifyexecutor() == "Synapse X" and syn.protect_gui) or gethui or hiddenUI or get_hidden_gui then
+    LuxtLib.Parent = game:GetService("CoreGui")
+    		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = 'Valiant',
+			Text = "Warning! Your executor does not have a Protect GUI function. Which in that case, you are not safe from GUI Detections.",
+			Duration = 6
+		})
+end
     end
     LuxtLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
