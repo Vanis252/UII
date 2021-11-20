@@ -117,7 +117,7 @@ if identifyexecutor() == "Synapse X" and syn.protect_gui then
 elseif gethui then
     LuxtLib.Parent = gethui()
 elseif hiddenUI then
-    LuxtLib.Parent = gethui()
+    LuxtLib.Parent = hiddenUI()
 elseif get_hidden_gui then
     LuxtLib.Parent = get_hidden_gui()
 elseif not (identifyexecutor() == "Synapse X" and syn.protect_gui) or gethui or hiddenUI or get_hidden_gui then
